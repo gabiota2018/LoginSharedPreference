@@ -29,14 +29,16 @@ public class ViewModelRegistro extends AndroidViewModel  {
         }
         return usuarioMutableLiveData;
     }
+
+
 public  void guardar(Usuario usuario){
     ApiClient.guardar(context,usuario);
     Intent i=new Intent(context, MainActivity.class);
+    context.startActivity(i);
 }
-   public void traerDatos(Boolean aviso){
-          if(aviso){
-              usuario=ApiClient.leer(context);
-              usuarioMutableLiveData.setValue(usuario);
-          }
-   }
+
+   public void traerDatos(){
+          usuario=ApiClient.leer(context);
+          usuarioMutableLiveData.setValue(usuario);
+  }
 }

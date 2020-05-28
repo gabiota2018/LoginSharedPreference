@@ -43,6 +43,7 @@ public class ApiClient {
         String nombre=sp.getString("nombre","-");
         String mail=sp.getString("mail","-");
         String password=sp.getString("password","-");
+
         if(correo.equals(mail) && pass.equals(password)){
         usuario=new Usuario(dni,apellido,nombre,mail,password);
         }

@@ -15,15 +15,25 @@ import com.example.loginsharedpreference.model.Usuario;
 
 public class RegistroActivity extends AppCompatActivity {
     private EditText etDni,etApellido,etNombre,etMail,etPassword;
-    private Button btnActualizar;
+    private Button btnGuardar;
     private ViewModelRegistro vm;
+    private boolean esta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro);
+        etDni = findViewById(R.id.etDni);
+        etApellido = findViewById(R.id.etApellido);
+        etNombre = findViewById(R.id.etNombre);
+        etMail = findViewById(R.id.etMail);
+        etPassword = findViewById(R.id.etPassword);
+        btnGuardar = findViewById(R.id.btnActualizarPerfil);
+
         vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ViewModelRegistro.class);
-       btnActualizar.setOnClickListener(new View.OnClickListener() {
+
+
+        btnGuardar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
                Usuario usuario=new Usuario();
@@ -35,17 +45,22 @@ public class RegistroActivity extends AppCompatActivity {
                vm.guardar(usuario);
            }
        });
-vm.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
-    @Override
-    public void onChanged(Usuario usuario) {
-        etDni.setText(usuario.getDni());
-        etApellido.setText(usuario.getApellido());
-        etNombre.setText(usuario.getNombre());
-        etMail.setText(usuario.getMail());
-        etPassword.setText(usuario.getPassword());
-    }
-});
-Intent i=getIntent();
-vm.traerDatos(i.getBooleanExtra("esta",false));
+        Intent i=getIntent();
+        //si el usuario existe, osea que se logueo, muestro los datos
+        esta=i.getBooleanExtra("esta",false);
+        if(esta) {
+            vm.traerDatos();
+            vm.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
+                @Override
+                public void onChanged(Usuario usuario) {
+                    etDni.setText(usuario.getDni());
+                    etApellido.setText(usuario.getApellido());
+                    etNombre.setText(usuario.getNombre());
+                    etMail.setText(usuario.getMail());
+                    etPassword.setText(usuario.getPassword());
+                }
+            });
+        }
+
     }
 }
