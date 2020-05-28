@@ -13,6 +13,7 @@ public class ApiClient {
         }
     return sp;
     }
+
     public  static  void guardar(Context context, Usuario usuario){
         SharedPreferences sp=conectar(context);
         SharedPreferences.Editor editor=sp.edit();
@@ -25,22 +26,23 @@ public class ApiClient {
     }
     public  static  Usuario leer(Context context){
         SharedPreferences sp=conectar(context);
-        String dni=sp.getString("dni","-1");
-        String apellido=sp.getString("apellido","-1");
-        String nombre=sp.getString("nombre","-1");
-        String mail=sp.getString("mail","-1");
-        String password=sp.getString("password","-1");
+        String dni=sp.getString("dni","-");
+        String apellido=sp.getString("apellido","-");
+        String nombre=sp.getString("nombre","-");
+        String mail=sp.getString("mail","-");
+        String password=sp.getString("password","-");
         Usuario usuario=new Usuario(dni,apellido,nombre,mail,password);
         return  usuario;
     }
     public  static  Usuario login(Context context,String correo,String pass){
-       Usuario usuario=null;
+
+        Usuario usuario=null;
         SharedPreferences sp=conectar(context);
-        String dni=sp.getString("dni","-1");
-        String apellido=sp.getString("apellido","-1");
-        String nombre=sp.getString("nombre","-1");
-        String mail=sp.getString("mail","-1");
-        String password=sp.getString("password","-1");
+        String dni=sp.getString("dni","-");
+        String apellido=sp.getString("apellido","-");
+        String nombre=sp.getString("nombre","-");
+        String mail=sp.getString("mail","-");
+        String password=sp.getString("password","-");
         if(correo.equals(mail) && pass.equals(password)){
         usuario=new Usuario(dni,apellido,nombre,mail,password);
         }

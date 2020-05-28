@@ -4,74 +4,70 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-     tools:context=".ui.login.MainActivity">
+    tools:context=".ui.login.MainActivity">
 
     <EditText
-        android:id="@+id/etCorreo"
+        android:id="@+id/etPasswordLogueo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="32dp"
+        android:backgroundTint="#000000"
+        android:ems="10"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etMailLogueo" />
+
+    <EditText
+        android:id="@+id/etMailLogueo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="32dp"
         android:backgroundTint="#000000"
         android:ems="10"
         android:enabled="true"
-        android:hint="usuario"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.305"
+        app:layout_constraintHorizontal_bias="0.477"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="36dp"
-        android:layout_marginEnd="32dp"
-        android:backgroundTint="#000000"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="text"
+    <Button
+        android:id="@+id/btnEnviarLogueo"
+        android:layout_width="213dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="104dp"
+        android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.283"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etCorreo" />
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordLogueo" />
+
+    <Button
+        android:id="@+id/btnRegistro"
+        android:layout_width="208dp"
+        android:layout_height="38dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="108dp"
+        android:text="Registrarse"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnEnviarLogueo" />
 
     <TextView
         android:id="@+id/tvMensajeLogueo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="60dp"
         android:layout_marginEnd="32dp"
         android:text=" "
         android:textColor="#C60547"
         android:textSize="36sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnRegistro" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="55dp"
-        android:layout_marginTop="88dp"
-        android:layout_marginEnd="192dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
-
-    <Button
-        android:id="@+id/btnRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="54dp"
-        android:layout_marginTop="40dp"
-        android:layout_marginEnd="180dp"
-        android:text="Registrarse"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

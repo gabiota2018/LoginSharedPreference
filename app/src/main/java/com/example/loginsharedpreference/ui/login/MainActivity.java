@@ -1,6 +1,7 @@
 package com.example.loginsharedpreference.ui.login;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,50 +11,41 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.loginsharedpreference.R;
-import com.example.loginsharedpreference.ui.registro.*;
+import com.example.loginsharedpreference.model.Usuario;
+import com.example.loginsharedpreference.request.ApiClient;
+import com.example.loginsharedpreference.ui.registro.RegistroActivity;
 
 public class MainActivity extends AppCompatActivity {
-private EditText etUsuario,etPassword;
-private Button btnLogin,btnRegistro;
+    private EditText etUsuario;
+    private EditText etPassword;
+    private Button btnEnviar;
+    private Button btnRegistrar;
     private TextView tvMensaje;
-private ViewModelMain vm;
-
+    private ViewModelMain vm;
+    private Usuario usuario;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        vm= ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication()).create(ViewModelMain.class);
 
-        vm=new ViewModelMain();
-                iniciarVista();
+        iniciarVista();
     }
     private void iniciarVista(){
-        etUsuario=findViewById(R.id.etCorreo);
-        etPassword=findViewById(R.id.etPassword);
-        btnLogin=findViewById(R.id.btnLogin);
-        btnRegistro=findViewById(R.id.btnRegistro);
+        etUsuario=findViewById(R.id.etMailLogueo);
+        etPassword=findViewById(R.id.etPasswordLogueo);
         tvMensaje=findViewById(R.id.tvMensajeLogueo);
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnEnviar=findViewById(R.id.btnEnviarLogueo);
+        btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Boolean rta=vm.logueo(etUsuario.getText().toString(),etPassword.getText().toString());
-              /*  if(rta)
+               // boolean rta=vm.buscarUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
+                // if(rta)
                 {
-                    //Intent i=new Intent(MainActivity.this, Registro.class);
-                    //i.putExtra("pertenece",true);
-                    //MainActivity.this.startActivity(i);
-                }*/
-            }
-        });
-        btnRegistro.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Boolean rta=vm.logueo(etUsuario.getText().toString(),etPassword.getText().toString());
-                if(!rta)
-                {
-                    Intent i=new Intent(MainActivity.this, Registro.class);
-                    i.putExtra("pertenece",false);
+                    Intent i=new Intent(MainActivity.this, RegistroActivity.class);
                     MainActivity.this.startActivity(i);
                 }
+                //else tvMensaje.setText("Datos incorrectos");
             }
         });
     }
