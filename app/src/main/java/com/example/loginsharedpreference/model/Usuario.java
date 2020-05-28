@@ -1,9 +1,6 @@
 package com.example.loginsharedpreference.model;
 
-import androidx.annotation.NonNull;
 
-import java.util.ArrayList;
-import java.util.List;
 
 public class Usuario {
     private  String dni;
@@ -73,41 +70,5 @@ public class Usuario {
                 '}' ;
     }
 
-    public List<Usuario> listar() {
-        List<Usuario> listado = new ArrayList<Usuario>();
-        Usuario usuario = new Usuario();
-        usuario.dni = "10100100";
-        usuario.nombre = "ana";
-        usuario.apellido = "acosta";
-        usuario.mail = "a";//"ana@gmail.com";
-        usuario.password = "a";//"111";
-        listado.add(usuario);
 
-
-
-        return listado;
-    }
-    public  boolean logueo(String mail, String password){
-        boolean rta=false;
-        List<Usuario> listado = new ArrayList<Usuario>();
-        Usuario usuario = new Usuario();
-        listado=usuario.listar();
-        for(Usuario p:listado)
-        {
-            if(p.mail.equals(mail) && p.password.equals(password))
-                rta=true;
-        }
-        return  rta;
-    }
-    public  Usuario devolverUsuario(String mail){
-        List<Usuario> listado = new ArrayList<Usuario>();
-        Usuario usuario = new Usuario();
-        listado=usuario.listar();
-        for(Usuario p:listado)
-        {
-            if(p.mail.equals(mail))
-                usuario=p;
-        }
-        return  usuario;
-    }
 }
