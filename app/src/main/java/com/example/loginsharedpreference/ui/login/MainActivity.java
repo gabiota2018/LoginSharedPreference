@@ -40,32 +40,13 @@ public class MainActivity extends AppCompatActivity {
         btnEnviar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //si el usuario existe
-                boolean rta=vm.buscarUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
-                if(rta)
-                {
-                    Intent i=new Intent(MainActivity.this, RegistroActivity.class);
-                    //aviso que existe, para que se carguen los datos
-                    i.putExtra("esta", true);
-                    MainActivity.this.startActivity(i);
-                }
-                else tvMensaje.setText("Datos incorrectos");
+                vm.buscarUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
             }
         });
         btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //verifico que el usuario NO existe
-                //para que no se registre mas de una vez
-                boolean rta=vm.buscarUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
-                if(!rta)
-                {
-                    Intent i=new Intent(MainActivity.this, RegistroActivity.class);
-                    //aviso que no se carguen los datos
-                    i.putExtra("esta", false);
-                    MainActivity.this.startActivity(i);
-                }
-                else tvMensaje.setText("Ya está registrado");
+                vm.registrarUsuario(etUsuario.getText().toString(),etPassword.getText().toString());
             }
         });
     }

@@ -40,27 +40,23 @@ public class RegistroActivity extends AppCompatActivity {
                usuario.setDni(etDni.getText().toString());
                usuario.setApellido(etApellido.getText().toString());
                usuario.setNombre(etNombre.getText().toString());
-               usuario.setMail(etPassword.getText().toString());
+               usuario.setMail(etMail.getText().toString());
                usuario.setPassword(etPassword.getText().toString());
                vm.guardar(usuario);
            }
        });
-        Intent i=getIntent();
-        //si el usuario existe, osea que se logueo, muestro los datos
-        esta=i.getBooleanExtra("esta",false);
-        if(esta) {
-            vm.traerDatos();
-            vm.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
-                @Override
-                public void onChanged(Usuario usuario) {
-                    etDni.setText(usuario.getDni());
-                    etApellido.setText(usuario.getApellido());
-                    etNombre.setText(usuario.getNombre());
-                    etMail.setText(usuario.getMail());
-                    etPassword.setText(usuario.getPassword());
-                }
-            });
-        }
+        vm.getUsuarioMutableLiveData().observe(this, new Observer<Usuario>() {
+            @Override
+            public void onChanged(Usuario usuario) {
+                etDni.setText(usuario.getDni()+"");
+                etApellido.setText(usuario.getApellido());
+                etNombre.setText(usuario.getNombre());
+                etMail.setText(usuario.getMail());
+                etPassword.setText(usuario.getPassword());
+            }
+        });
+        Intent i = getIntent();
+        vm.traerDatos(i.getStringExtra("correo"));
 
     }
 }

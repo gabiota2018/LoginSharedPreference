@@ -37,8 +37,10 @@ public  void guardar(Usuario usuario){
     context.startActivity(i);
 }
 
-   public void traerDatos(){
-          usuario=ApiClient.leer(context);
-          usuarioMutableLiveData.setValue(usuario);
-  }
+    public void traerDatos(String correoBuscado){
+        if(!correoBuscado.equals("vacio")) {
+            usuario = ApiClient.leer(context, correoBuscado);
+            usuarioMutableLiveData.setValue(usuario);
+        }
+    }
 }

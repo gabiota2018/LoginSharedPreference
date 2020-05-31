@@ -24,7 +24,7 @@ public class ApiClient {
         editor.putString("pasword",usuario.getPassword());
         editor.commit();
     }
-    public  static  Usuario leer(Context context){
+    public  static  Usuario leer(Context context,String correoBuscado){
         SharedPreferences sp=conectar(context);
         String dni=sp.getString("dni","-");
         String apellido=sp.getString("apellido","-");
@@ -34,9 +34,9 @@ public class ApiClient {
         Usuario usuario=new Usuario(dni,apellido,nombre,mail,password);
         return  usuario;
     }
-    public  static  Usuario login(Context context,String correo,String pass){
+    public  static  boolean login(Context context,String correo,String pass){
 
-        Usuario usuario=null;
+       Boolean rta=false;
         SharedPreferences sp=conectar(context);
         String dni=sp.getString("dni","-");
         String apellido=sp.getString("apellido","-");
@@ -44,9 +44,7 @@ public class ApiClient {
         String mail=sp.getString("mail","-");
         String password=sp.getString("password","-");
 
-        if(correo.equals(mail) && pass.equals(password)){
-        usuario=new Usuario(dni,apellido,nombre,mail,password);
-        }
-        return  usuario;
+        if(correo.equals(mail) && pass.equals(password))rta=true;
+        return  rta;
     }
 }
